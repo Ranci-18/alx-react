@@ -17,7 +17,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build -o https://github.com/Ranci-18/alx-react.git --repo=https://github.com/Ranci-18/alx-react.git"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -42,5 +42,5 @@
     "enzyme": "^3.11.0",
     "gh-pages": "^6.0.0"
   },
-  "homepage": "https://github.com/Ranci-18/alx-react/tree/master/0x01-react_intro/task_3/dashboard"
+  "homepage": "http://Ranci-18.github.io/alx-react"
 }
