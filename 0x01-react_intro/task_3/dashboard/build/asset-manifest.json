@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/Ranci-18/alx-react/tree/master/0x01-react_intro/task_3/dashboard/static/css/main.eeec0db1.css",
+    "main.js": "/Ranci-18/alx-react/tree/master/0x01-react_intro/task_3/dashboard/static/js/main.8ac44038.js",
+    "static/js/787.545aecf5.chunk.js": "/Ranci-18/alx-react/tree/master/0x01-react_intro/task_3/dashboard/static/js/787.545aecf5.chunk.js",
+    "static/media/holberton-logo.jpg": "/Ranci-18/alx-react/tree/master/0x01-react_intro/task_3/dashboard/static/media/holberton-logo.24bab5d633e36ca8d17e.jpg",
+    "static/media/close-icon.png": "/Ranci-18/alx-react/tree/master/0x01-react_intro/task_3/dashboard/static/media/close-icon.dcf94367e9379947f510.png",
+    "index.html": "/Ranci-18/alx-react/tree/master/0x01-react_intro/task_3/dashboard/index.html",
+    "main.eeec0db1.css.map": "/Ranci-18/alx-react/tree/master/0x01-react_intro/task_3/dashboard/static/css/main.eeec0db1.css.map",
+    "main.8ac44038.js.map": "/Ranci-18/alx-react/tree/master/0x01-react_intro/task_3/dashboard/static/js/main.8ac44038.js.map",
+    "787.545aecf5.chunk.js.map": "/Ranci-18/alx-react/tree/master/0x01-react_intro/task_3/dashboard/static/js/787.545aecf5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.eeec0db1.css",
+    "static/js/main.8ac44038.js"
+  ]
+}
