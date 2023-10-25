@@ -1,17 +1,24 @@
-import $ from 'jquery';
-import _ from 'lodash';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App/App';
+import reportWebVitals from './reportWebVitals';
+import Notifications from './Notifications/Notifications';
 
-$('body').append('<div id="logo"></div>')
-$('body').append('<p>Holberton Dashboard</p>');
-$('body').append('<p>Dashboard data for the students</p>');
-$('body').append('<button>Click here to get started</button>');
-$('body').append('<p id="count"></p>');
-$('body').append('<p>Copyright - Holberton School</p>');
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
 
-let count = 0;
-const updateCounter = () => {
-    count++;
-    $('#count').html(`${count} clicks on the button`);
-};
+const rootNotifications = ReactDOM.createRoot(document.getElementById('root-notifications'));
+rootNotifications.render(
+  <React.StrictMode>
+    <Notifications />
+  </React.StrictMode>
+);
 
-$('button').on('click', _.debounce(updateCounter, 300));
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();

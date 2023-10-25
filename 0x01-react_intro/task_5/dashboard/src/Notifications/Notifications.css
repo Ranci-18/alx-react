@@ -1,0 +1,12 @@
+.Notifications {
+    border: 2px dashed rgb(212, 76, 76);
+    padding: 10px;
+}
+
+.Notifications li:first-child {
+    color: rgb(11, 11, 129);
+}
+
+.Notifications li:not(:first-child) {
+    color: red;
+}
