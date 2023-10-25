@@ -7,7 +7,10 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
     },
     devServer: {
-        static: path.join(__dirname, 'dist'),
+        static: "./dist",
         hot: true,
+        compress: true,
+        open: true,
+        port: 8564,
         },
 }
