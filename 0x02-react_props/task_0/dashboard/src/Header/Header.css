@@ -1,0 +1,17 @@
+/* header */
+.App-header {  
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    font-size: calc(6px + 2vmin);
+    color: rgb(231, 67, 67);
+  }
+
+  hr {
+    border: 1px solid rgb(227, 62, 62);
+  }
+
+  .App-logo {
+    height: 25vmin;
+  }
