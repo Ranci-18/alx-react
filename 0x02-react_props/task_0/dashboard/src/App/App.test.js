@@ -7,4 +7,5 @@ describe("App component tests", () => {
         const app = shallow(<App />);
         expect(app.exists()).toBe(true);
     });
+
 });
