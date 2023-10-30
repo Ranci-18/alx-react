@@ -3,11 +3,12 @@
     padding: 10px;
 }
 
-.Notifications li:first-child {
+[data-notification-type="default"] {
     color: rgb(11, 11, 129);
 }
 
-.Notifications li:not(:first-child) {
+[data-notification-type="urgent"],
+[data-urgent] {
     color: red;
 }
 
