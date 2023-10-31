@@ -20,6 +20,7 @@ class App extends React.Component {
     {id: 2, type: 'urgent', value: 'New resume available'},
     {id: 3, type: 'urgent', html: getLatestNotification()},
   ];
+
   render () {
   return (
     <React.Fragment>
@@ -45,4 +46,5 @@ App.defaultProps = {
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
 };
+
 export default App;
