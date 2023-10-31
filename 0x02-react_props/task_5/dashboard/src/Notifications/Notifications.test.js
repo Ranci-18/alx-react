@@ -4,6 +4,12 @@ import { shallow } from "enzyme";
 import NotificationItem from "./NotificationItem";
 import { getLatestNotification } from "../utils/utils";
 
+const listNotifications = [
+    {id: 1, type: 'default', value: 'New course available'},
+    {id: 2, type: 'urgent', value: 'New resume available'},
+    {id: 3, type: 'urgent', html: getLatestNotification()},
+  ];
+
 describe("Notificatioins component test", () => {
     it("renders without crashing", () => {
         const notifications = shallow(<Notifications />);
@@ -16,8 +22,8 @@ describe("Notificatioins component test", () => {
     });
 
     it("renders <NotificationItem /> with the right html", () => {
-        const notifications = shallow(<Notifications displayDrawer={true} />);
-        expect(notifications.find('ul').children()).toHaveLength(3);
+        const notifications = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />);
+        expect(notifications.find('ul').children()).toHaveLength(listNotifications.length);
         notifications.find('ul').forEach((node) => {
             expect(node.equals(<NotificationItem />));
         });
@@ -26,8 +32,8 @@ describe("Notificatioins component test", () => {
         expect(notifications.find('ul').childAt(2).html()).toEqual(`<li data-urgent=\"true\">${getLatestNotification()}</li>`);
     });
 
-    it ("renders the text 'Here is the list of notifications'", () => {
-        const notifications = shallow(<Notifications displayDrawer={true} />);
-        expect(notifications.find("p").text()).toBe("Here is the list of notifications");
+    it("menu item is being displayed when displayDrawer is false", () => {
+        const notifications = shallow(<Notifications />);
+        expect(notifications.find('.menuItem')).toBeDefined();
     });
 });

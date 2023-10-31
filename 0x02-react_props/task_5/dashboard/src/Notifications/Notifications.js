@@ -3,8 +3,10 @@ import "./Notifications.css";
 import { getLatestNotification } from '../utils/utils';
 import closeIcon from '../assets/close-icon.png';
 import NotificationItem from './NotificationItem';
+import PropTypes from 'prop-types';
+import NotificationItemShape from './NotificationItemShape';
 
-function Notifications({ displayDrawer }) {
+function Notifications({ displayDrawer, listNotifications }) {
     const inLineStyle = {
         position: 'absolute',
         right: '1px',
@@ -15,17 +17,34 @@ function Notifications({ displayDrawer }) {
     }
     return (
         <>
-            {displayDrawer ? (<div className="Notifications">
-                <button style={inLineStyle} onClick={buttonOnClick} aria-label='close'>
-                    <img src={closeIcon} alt='close-icon' width="10px" />
-                </button>
-                <p>Here is the list of notifications</p>
-                <ul>
-                    <NotificationItem type="default" value="New course available" />
-                    <NotificationItem type="urgent" value="New resume available" />
-                    <NotificationItem type="urgent" html={getLatestNotification()} />
-                </ul>
-            </div>
+            {displayDrawer ? (
+            <>
+                <div className="menuItem">
+                    <p>Your notificatioins</p>
+                </div>
+                <div className="Notifications">
+                    {/*<button style={inLineStyle} onClick={buttonOnClick} aria-label='close'>
+                        <img src={closeIcon} alt='close-icon' width="10px" />
+                    </button>
+                    <p>Here is the list of notifications</p> */}
+                    <ul>
+                        {listNotifications && listNotifications.length > 0 ? 
+                        (listNotifications.map(({ id, html, type, value }) => ( 
+                        <>
+                            <NotificationItem key={id} type={type} html={html} value={value} />
+                        </>
+                        ))
+                        ) : (
+                        <div>
+                            <NotificationItem type="default" value="No new notification for now" />
+                            <button style={inLineStyle} onClick={buttonOnClick} aria-label='close'>
+                                <img src={closeIcon} alt='close-icon' width="10px" />
+                            </button>
+                        </div>
+                        )}
+                    </ul>
+                </div>
+            </>
             ) : (
             <div className="menuItem">
                 <p>Your notificatioins</p>
@@ -37,6 +56,11 @@ function Notifications({ displayDrawer }) {
 
 Notifications.defaultProps = {
     displayDrawer: false,
-}
+    listNotifications: [],
+};
+
+Notifications.propTypes = {
+    listNotifications: PropTypes.arrayOf(NotificationItemShape),
+};
 
 export default Notifications;

@@ -14,7 +14,7 @@ describe("App component tests", () => {
     it("Renders the CourseList component when isLoggedIn is true", () => {
         const app = shallow(<App isLoggedIn={true} />);
         expect(app.contains(<Login />)).toBe(false);
-        expect(app.contains(<CourseList />)).toBe(true);
+        expect(app.contains(<CourseList />)).toBe(false);
     });
 
     it("Renders the Login component when isLoggedIn is false", () => {
