@@ -1,17 +1,17 @@
+.menuItem {
+    position: absolute;
+    top: 0;
+}
+
 .Notifications {
-    border: 2px dashed rgb(212, 76, 76);
-    padding: 10px;
+    border: 1px dotted rgb(220, 58, 58);
+    width: fit-content;
 }
 
-[data-notification-type="default"] {
-    color: rgb(11, 11, 129);
+li[data-notification-type='default'] {
+    color: rgb(68, 53, 231);
 }
 
-[data-notification-type="urgent"],
-[data-urgent] {
-    color: red;
-}
-
-img {
-    min-height: 2px;
+li[data-notification-type='urgent'] {
+    color: rgb(220, 58, 58);
 }

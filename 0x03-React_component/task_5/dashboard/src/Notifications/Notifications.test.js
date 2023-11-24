@@ -1,39 +1,51 @@
 import React from "react";
-import Notifications from "./Notifications";
 import { shallow } from "enzyme";
+import Notifications from "./Notifications";
 import NotificationItem from "./NotificationItem";
-import { getLatestNotification } from "../utils/utils";
 
 const listNotifications = [
     {id: 1, type: 'default', value: 'New course available'},
     {id: 2, type: 'urgent', value: 'New resume available'},
-    {id: 3, type: 'urgent', html: getLatestNotification()},
-  ];
+    {id: 3, type: 'urgent', html: { __html: '<strong>Urgent requirement</strong> - complete by EOD' } },
+  ]
 
-describe("Notificatioins component test", () => {
+describe("<Notifications />", () => {
     it("renders without crashing", () => {
-        const notifications = shallow(<Notifications />);
-        expect(notifications).toBeDefined();
-    });
+        const wrapper = shallow(<Notifications />);
+        expect(wrapper.exists()).toEqual(true);
+    })
 
-    it("renders ul", () => {
-        const notifications = shallow(<Notifications />);
-        expect(notifications.find("ul")).toBeDefined();
-    });
+    it("renders three list items", () => {
+        const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />);
+        expect(wrapper.find(NotificationItem)).toHaveLength(3);
+    })
 
-    it("renders <NotificationItem /> with the right html", () => {
-        const notifications = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />);
-        expect(notifications.find('ul').children()).toHaveLength(listNotifications.length);
-        notifications.find('ul').forEach((node) => {
-            expect(node.equals(<NotificationItem />));
-        });
-        expect(notifications.find('ul').childAt(0).html()).toEqual('<li data-notification-type="default">New course available</li>');
-        expect(notifications.find('ul').childAt(1).html()).toEqual('<li data-notification-type="urgent">New resume available</li>');
-        expect(notifications.find('ul').childAt(2).html()).toEqual(`<li data-urgent=\"true\">${getLatestNotification()}</li>`);
-    });
+    it("renders the right NotificationItem html", () => {
+        const wrapper = shallow(<Notifications listNotifications={listNotifications} displayDrawer={true} />);
+        const notificationItemWrapper = wrapper.find(NotificationItem).last();
+        expect(notificationItemWrapper.prop('type')).toEqual('urgent');
+        expect(notificationItemWrapper.html()).toEqual('<li data-notification-type="urgent"><strong>Urgent requirement</strong> - complete by EOD</li>');
+    })
 
-    it("menu item is being displayed when displayDrawer is false", () => {
-        const notifications = shallow(<Notifications />);
-        expect(notifications.find('.menuItem')).toBeDefined();
-    });
+    it("renders the correct text", () => {
+        const wrapper = shallow(<Notifications displayDrawer={true} />);
+        expect(wrapper.find("div p").at(1).text()).toEqual("Here is the list of notifications");
+    })
+
+    it("renders menu item when displayDrawer is false", () => {
+        const wrapper = shallow(<Notifications displayDrawer={false} />);
+        expect(wrapper.find("div.menuItem")).toHaveLength(1);
+        expect(wrapper.find("div.Notifications")).toHaveLength(0);
+    })
+
+    it("renders menu item when displayDrawer is false", () => {
+        const wrapper = shallow(<Notifications displayDrawer={true} />);
+        expect(wrapper.find("div.menuItem")).toHaveLength(1);
+        expect(wrapper.find("div.Notifications")).toHaveLength(1);
+    })
+
+    it("renders No new notifications when the list is empty", () => {
+        const wrapper = shallow(<Notifications listNotifications={[]} displayDrawer={true} />);
+        expect(wrapper.find(NotificationItem)).toHaveLength(1);
+    })
 });

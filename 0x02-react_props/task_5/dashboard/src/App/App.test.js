@@ -1,40 +1,67 @@
 import React from "react";
-import App from "./App";
 import { shallow } from "enzyme";
-import './App.css';
+import App from "./App";
+import Notifications from "../Notifications/Notifications";
+import Header from "../Header/Header";
 import Login from "../Login/Login";
+import Footer from "../Footer/Footer";
 import CourseList from "../CourseList/CourseList";
 
-describe("App component tests", () => {
-    it("Renders without crashing", () => {
-        const app = shallow(<App />);
-        expect(app.exists()).toBe(true);
-    });
+describe("<App />", () => {
+    it("renders without crashing", () => {
+        const wrapper = shallow(<App />);
+        expect(wrapper.exists()).toEqual(true);
+    })
 
-    it("Renders the CourseList component when isLoggedIn is true", () => {
-        const app = shallow(<App isLoggedIn={true} />);
-        expect(app.contains(<Login />)).toBe(false);
-        expect(app.contains(<CourseList />)).toBe(false);
-    });
+    it("renders App-header", () => {
+        const wrapper = shallow(<App />);
+        expect(wrapper.find(".App").exists()).toEqual(true);
+    })
 
-    it("Renders the Login component when isLoggedIn is false", () => {
-        const app = shallow(<App isLoggedIn={false} />);
-        expect(app.contains(<Login />)).toBe(true);
-        expect(app.contains(<CourseList />)).toBe(false);
-    });
+    it("renders App-body", () => {
+        const wrapper = shallow(<App />);
+        expect(wrapper.find(".App-body").exists()).toEqual(true);
+    })
 
-    it("renders the Footer component", () => {
-        const app = shallow(<App />);
-        expect(app.find("Footer")).toBeDefined();
-    });
+    it("renders App-footer", () => {
+        const wrapper = shallow(<App />);
+        expect(wrapper.find(".App-footer").exists()).toEqual(true);
+    })
 
-    it("renders the Header component", () => {
-        const app = shallow(<App />);
-        expect(app.find("Header")).toBeDefined();
-    });
+    it("renders <Notification />", () => {
+        const wrapper = shallow(<App />);
+        expect(wrapper.find(Notifications).exists()).toEqual(true);
+    })
 
-    it("renders the Notifications component", () => {
-        const app = shallow(<App />);
-        expect(app.find("Notifications")).toBeDefined();
-    });
+    it("renders <Header />", () => {
+        const wrapper = shallow(<App />);
+        expect(wrapper.find(Header).exists()).toEqual(true);
+    })
+
+    it("renders <Login />", () => {
+        const wrapper = shallow(<App />);
+        expect(wrapper.find(Login).exists()).toEqual(true);
+    })
+
+    it("renders <Footer />", () => {
+        const wrapper = shallow(<App />);
+        expect(wrapper.find(Footer).exists()).toEqual(true);
+    })
+
+    it("does not render <CourseList />", () => {
+        const wrapper = shallow(<App />);
+        expect(wrapper.find(CourseList).exists()).toEqual(false);
+    })
+});
+
+describe("<App /> with isLoggedIn true", () => {
+    it("renders <CourseList />", () => {
+        const wrapper = shallow(<App isLoggedIn={true} />);
+        expect(wrapper.find(CourseList).exists()).toEqual(true);
+    })
+
+    it("does not render <Login />", () => {
+        const wrapper = shallow(<App isLoggedIn={true} />);
+        expect(wrapper.find(Login).exists()).toEqual(false);
+    })
 });

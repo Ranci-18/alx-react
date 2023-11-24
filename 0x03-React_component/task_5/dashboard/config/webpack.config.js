@@ -1,10 +1,16 @@
-const path = require('path');
 
 module.exports = {
     entry: './src/index.js',
     output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, '../dist')
+        filename: 'bundle.js'
+    },
+    mode: "development",
+    devServer: {
+        static: './dist',
+        hot: true,
+        compress: true,
+        open: true,
+        port: 8086,
     },
     module: {
         rules: [
@@ -12,32 +18,24 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            '@babel/preset-env',
-                            '@babel/preset-react'
-                        ],
-                    },
+                    loader: 'babel-loader'
                 },
             },
             {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                ]
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader']
             },
             {
-                test: /\.(png|svg|jpg|jpeg|gif)$/,
-                //type: 'asset/resource',
-                use: 'file-loader'
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                use: ['file-loader',
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            disable: true,
+                            byPassOnDebug: true,
+                        },
+                    },]
             }
         ],
-    },
-    devServer: {
-        static: path.resolve(__dirname, '../dist'),
-        hot: true,
-        open: true,
     },
 }

@@ -1,16 +1,15 @@
-import Footer from './Footer';
-import React from 'react';
-import { shallow } from 'enzyme';
-import { getFooterCopy, getFullYear } from '../utils/utils';
+import React from "react";
+import Footer from "./Footer";
+import { shallow } from "enzyme";
 
-describe("Footer tests", () => {
+describe("<Footer />", () => {
     it("renders without crashing", () => {
-        const footer = shallow(<Footer />);
-        expect(footer.exists()).toEqual(true);
-    });
-    
-    it("render the text 'Copyright'", () => {
         const wrapper = shallow(<Footer />);
-        expect(wrapper.find("p").text()).toEqual(`Copyright ${getFullYear()} - ${getFooterCopy()}`);
-    });
+        expect(wrapper.exists()).toEqual(true);
+    })
+
+    it("renders the correct text", () => {
+        const wrapper = shallow(<Footer />);
+        expect(wrapper.find("p").text()).toEqual("Copyright 2023 - Holberton School main dashboard");
+    })
 });

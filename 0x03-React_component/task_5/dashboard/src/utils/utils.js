@@ -1,11 +1,17 @@
-const getFullYear = () => new Date().getFullYear();
-
-function getFooterCopy(isIndex) {
-    if (isIndex) return 'Holberton School';
-    return 'Holberton School main dashboard';
+const getFullYear = () => {
+    const date = new Date();
+    return date.getFullYear();
 }
 
-function getLatestNotification() {
+const getFooterCopy = (isIndex) => {
+    if (isIndex) {
+        return 'Holberton School';
+    } else {
+        return 'Holberton School main dashboard';
+    }
+}
+
+const getLatestNotification = () => {
     return '<strong>Urgent requirement</strong> - complete by EOD';
 }
 

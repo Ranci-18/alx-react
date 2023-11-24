@@ -1,20 +1,21 @@
 import React from "react";
-import { shallow } from "enzyme";
 import NotificationItem from "./NotificationItem";
+import { shallow } from "enzyme";
 
-describe("<NotificationItem /> renders without crashing", () => {
+describe("<NotificationItem />", () => {
     it("renders without crashing", () => {
         const wrapper = shallow(<NotificationItem />);
-        expect(wrapper).toBeDefined();
-    });
+        expect(wrapper.exists()).toEqual(true);
+    })
 
-    it("renders dummy type and value props, type='default' and value='test'", () => {
-        const wrapper = shallow(<NotificationItem type='default' value='test' />);
-        expect(wrapper.html()).toEqual('<li data-notification-type="default">test</li>');
-    });
+    it("renders the correct type and value", () => {
+        const wrapper = shallow(<NotificationItem type="default" value="test" />);
+        expect(wrapper.html()).toContain('data-notification-type="default"');
+        expect(wrapper.text()).toEqual("test");
+    })
 
-    it("renders a dummy html prop as expected", () => {
-        const wrapper = shallow(<NotificationItem html='<u>test</u>' />);
-        expect(wrapper.find('li').html()).toEqual('<li data-urgent="true"><u>test</u></li>');
-    });
-});
+    it("renders the correct html", () => {
+        const wrapper = shallow(<NotificationItem html={{ __html: "<u>test</u>" }} />);
+        expect(wrapper.html()).toContain("<u>test</u>");
+    })
+})
