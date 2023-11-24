@@ -1,0 +1,17 @@
+.menuItem {
+    position: absolute;
+    top: 0;
+}
+
+.Notifications {
+    border: 1px dotted rgb(220, 58, 58);
+    width: fit-content;
+}
+
+li[data-notification-type='default'] {
+    color: rgb(68, 53, 231);
+}
+
+li[data-notification-type='urgent'] {
+    color: rgb(220, 58, 58);
+}
