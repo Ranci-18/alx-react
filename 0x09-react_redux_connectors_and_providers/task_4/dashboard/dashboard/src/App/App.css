@@ -1,0 +1,19 @@
+/* APP */
+.App {
+  background-color: #fff;
+  display: flex;
+  font-weight: bolder;
+  height: 25vh;
+}
+.App-body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*  FOOTER */
+.App-footer {
+  position: absolute;
+  width: 99vw;
+  bottom: 0;
+  font-style: italic;
+  text-align: center;
+}
